@@ -1,6 +1,6 @@
-import 'package:bloc_error_handler/bloc_error_handler.dart';
 import 'package:error_handler/error_handler.dart' as eh;
 import 'package:flutter/foundation.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:retrofit/dio.dart';
 
 typedef RetrofitResponse<State> = Future<HttpResponse<State>>;
@@ -35,6 +35,8 @@ eh.FutureResponse<State> convert<State>(
     ),
   );
 }
+
+typedef StateCubit<T> = Cubit<eh.UiState<T>>;
 
 extension CubitApiHandler<DataType> on StateCubit<DataType> {
   Future<void> emitApiCall(
