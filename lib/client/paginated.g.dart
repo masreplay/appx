@@ -11,6 +11,6 @@ Paginated<T> _$PaginatedFromJson<T extends dynamic>(
   T Function(Object? json) fromJsonT,
 ) =>
     Paginated<T>(
-      data: (json['data'] as List<dynamic>).map(fromJsonT).toList(),
+      result: (json['result'] as List<dynamic>).map(fromJsonT).toList(),
       total: json['total'] as int,
     );
