@@ -59,6 +59,8 @@ dependencies:
   # utility
   intl: ^0.17.0
   adaptive_breakpoints: ^0.1.4
+  injectable: ^1.5.3
+
 
 dev_dependencies:
   flutter_test:
