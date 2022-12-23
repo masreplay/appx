@@ -13,10 +13,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 ///      : super(key: "AuthenticationKey");
 ///
 ///  @override
-///  Authentication fromJson(JsonMap json) => Authentication.fromJson(json);
+///  Authentication _fromJson(JsonMap json) => Authentication.fromJson(json);
 ///
 ///  @override
-///  JsonMap toJson(Authentication value) => value.toJson();
+///  JsonMap _toJson(Authentication value) => value.toJson();
 /// }
 abstract class SerializablePreference<T> implements ObjectSharedPreference<T> {
   @override
@@ -32,30 +32,30 @@ abstract class SerializablePreference<T> implements ObjectSharedPreference<T> {
   });
 
   @protected
-  JsonMap toJson(T value);
+  JsonMap _toJson(T value);
 
   @protected
-  T fromJson(JsonMap json);
+  T _fromJson(JsonMap json);
 
   /// Read data from [sharedPreference] by it's [key] and then [json.decode]
-  /// and [fromJson] it
+  /// and [_fromJson] it
   @mustCallSuper
   @override
   T? maybeData() {
-    final value = sharedPreference.getString(key);
+    final value = sharedPreference.get(key);
     try {
-      return value == null ? null : fromJson(json.decode(value));
+      return value == null ? null : _fromJson(json.decode(value as String));
     } catch (e) {
       return null;
     }
   }
 
-  /// Starting by [toJson] then [json.encode] object and
+  /// Starting by [_toJson] then [json.encode] object and
   /// Set it in the [sharedPreference] by it's [key]
   @mustCallSuper
   @override
   Future<void> setData(T value) async {
-    final JsonMap newValue = toJson(value);
+    final JsonMap newValue = _toJson(value);
     final data = json.encode(newValue);
     await sharedPreference.setString(key, data);
   }
