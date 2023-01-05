@@ -11,7 +11,8 @@ T provideWarning<T>(T value) {
         "Unimplemented value, this value could be earthier nullable and it shouldn't or not implemented yet! please request it from the backend developer");
   }
 
-  print(StackTrace.current.toString().split("#")..join("\n"));
+  print((StackTrace.current.toString().split("#")
+    ..removeWhere((element) => element.isEmpty))[6]);
   return value;
 }
 
