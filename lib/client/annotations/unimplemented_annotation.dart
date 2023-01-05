@@ -10,6 +10,8 @@ T provideWarning<T>(T value) {
     print(
         "Unimplemented value, this value could be earthier nullable and it shouldn't or not implemented yet! please request it from the backend developer");
   }
+
+  print(StackTrace.current.toString().split("#")..join("\n"));
   return value;
 }
 
